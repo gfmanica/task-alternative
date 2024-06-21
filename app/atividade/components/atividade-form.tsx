@@ -17,9 +17,9 @@ export function AtividadeForm() {
 
         <Input name="nome" disabled={isPending} />
 
-        {/* {state?.errors?.login && (
-          <p className="text-xs text-red-500">{state.errors.login}</p>
-        )} */}
+        {state?.errors?.nome && (
+          <p className="text-xs text-red-500">{state.errors.nome}</p>
+        )}
       </div>
 
       <div className="flex justify-end">
