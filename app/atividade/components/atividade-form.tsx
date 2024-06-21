@@ -6,6 +6,7 @@ import { useActionState } from 'react';
 import { postAtividade } from '../actions/atividade';
 import { Button } from '@/components/ui/button';
 import { Loader, Save } from 'lucide-react';
+import { Error } from '@/components/form/error';
 
 export function AtividadeForm() {
   const [state, action, isPending] = useActionState(postAtividade, null);
@@ -17,15 +18,13 @@ export function AtividadeForm() {
 
         <Input name="nome" disabled={isPending} />
 
-        {state?.errors?.nome && (
-          <p className="text-xs text-red-500">{state.errors.nome}</p>
-        )}
+        <Error value={state?.errors?.nome} />
       </div>
 
       <div className="flex justify-end">
         <Button size="sm" disabled={isPending}>
-          {!isPending && <Save size={18} className="mr-2" />}
           {isPending && <Loader size={18} className="mr-2 animate-spin" />}
+          {!isPending && <Save size={18} className="mr-2" />}
           Salvar
         </Button>
       </div>
