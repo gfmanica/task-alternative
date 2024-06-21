@@ -30,7 +30,6 @@ export async function login(
   previousState: any,
   formData: FormData,
 ): Promise<{
-  data?: TLoginResponse;
   errors?: TLoginError;
 }> {
   const validationResult = parseFormData(formData);
@@ -44,6 +43,7 @@ export async function login(
   try {
     const { login, senha } = validationResult.data;
 
+    console.log({ login, senha });
     const response = await fetch('http://localhost:3001/login', {
       method: 'POST',
       body: JSON.stringify({ login, senha }),
@@ -63,12 +63,6 @@ export async function login(
     }
 
     cookies().set('token', data.token);
-
-    redirect('/atividade');
-
-    return {
-      data,
-    };
   } catch (e) {
     console.log(e);
     return {
@@ -77,4 +71,6 @@ export async function login(
       },
     };
   }
+
+  redirect('/atividade');
 }

@@ -4,13 +4,12 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
 import { LoginForm } from './components';
 
-export default function Home() {
+export default function LoginPage() {
   return (
     <div className="item flex flex-1 flex-col items-center justify-center">
       <Card className="w-[350px]">
