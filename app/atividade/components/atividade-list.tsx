@@ -1,5 +1,5 @@
 import { use } from 'react';
-import { queryAtividade } from '../actions/atividade';
+import { queryAtividade } from '../actions/query-atividade';
 import { TAtividade } from '../types';
 import { AtividadeCard } from './atividade-card';
 

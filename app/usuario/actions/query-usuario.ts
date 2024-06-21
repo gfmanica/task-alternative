@@ -3,11 +3,11 @@
 import { checkAuthenticity } from '@/utils/response';
 import { cookies } from 'next/headers';
 
-// Retorna uma atividade ou todas as atividades, de acordo com o id informado
-export async function queryAtividade(id?: number) {
+// Retorna um usuário ou todos usuários, de acordo com o id informado
+export async function getUsuario(id?: number) {
   try {
     const response = await fetch(
-      `http://localhost:3001/atividade${id ? `/${id}` : ''}`,
+      `http://localhost:3001/usuario${id ? `/${id}` : ''}`,
       {
         headers: {
           'Content-Type': 'application/json',
