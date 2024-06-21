@@ -5,28 +5,11 @@ import { cookies } from 'next/headers';
 import { AtividadeSchema } from '../types';
 import { redirect } from 'next/navigation';
 
-// Retorna uma atividade ou todas as atividades, de acordo com o id informado
-export async function getAtividade(id?: number) {
-  const response = await fetch(
-    `http://localhost:3001/atividade${id ? `/${id}` : ''}`,
-    {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${cookies().get('token')?.value}`,
-      },
-    },
-  );
-
-  checkAuthenticity(response);
-
-  return await response.json();
-}
-
 const validateFormData = (formData: FormData) =>
   AtividadeSchema.safeParse({ nome: formData.get('nome') });
 
 // Realiza o post de uma atividade
-export async function postAtividade(previousState: any, formData: FormData) {
+export async function mutateAtividade(previousState: any, formData: FormData) {
   const validatedFormData = validateFormData(formData);
 
   if (!validatedFormData.success) {

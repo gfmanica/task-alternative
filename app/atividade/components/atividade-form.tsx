@@ -3,13 +3,13 @@
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useActionState } from 'react';
-import { postAtividade } from '../actions/atividade';
+import { mutateAtividade } from '../actions/mutate-atividade';
 import { Button } from '@/components/ui/button';
 import { Loader, Save } from 'lucide-react';
 import { Error } from '@/components/form/error';
 
 export function AtividadeForm() {
-  const [state, action, isPending] = useActionState(postAtividade, null);
+  const [state, action, isPending] = useActionState(mutateAtividade, null);
 
   return (
     <form action={action} className="flex flex-col gap-4">

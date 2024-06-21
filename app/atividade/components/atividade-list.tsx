@@ -1,10 +1,10 @@
 import { use } from 'react';
-import { getAtividade } from '../actions/atividade';
+import { queryAtividade } from '../actions/atividade';
 import { TAtividade } from '../types';
 import { AtividadeCard } from './atividade-card';
 
 export function AtividadeList() {
-  const atividades: TAtividade[] = use(getAtividade());
+  const atividades: TAtividade[] = use(queryAtividade());
 
   return atividades?.map((atividade) => (
     <AtividadeCard atividade={atividade} />
