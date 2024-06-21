@@ -1,8 +1,9 @@
 import { Suspense } from 'react';
-import { Loader, Plus } from 'lucide-react';
+import { Plus } from 'lucide-react';
 import { AtividadeList } from './components';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import { Loading } from '@/components/loading';
 
 export default function AtividadePage() {
   return (
@@ -17,7 +18,7 @@ export default function AtividadePage() {
         </Link>
       </div>
 
-      <Suspense fallback={<Loader size={16} className="mr-2 animate-spin" />}>
+      <Suspense fallback={<Loading />}>
         <AtividadeList />
       </Suspense>
     </>

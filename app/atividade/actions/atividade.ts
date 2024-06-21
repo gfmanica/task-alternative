@@ -68,7 +68,5 @@ export async function postAtividade(previousState: any, formData: FormData) {
     };
   }
 
-  // if (data) {
-  //   redirect('/atividade');
-  // }
+  redirect('/atividade');
 }

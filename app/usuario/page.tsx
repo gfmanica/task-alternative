@@ -1,9 +1,10 @@
 import { Suspense } from 'react';
-import { Loader, Plus } from 'lucide-react';
+import { Plus } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { UsuarioList } from './components/usuario-list';
+import { Loading } from '@/components/loading';
 
 export default function UsuarioPage() {
   return (
@@ -18,7 +19,7 @@ export default function UsuarioPage() {
         </Link>
       </div>
 
-      <Suspense fallback={<Loader size={16} className="mr-2 animate-spin" />}>
+      <Suspense fallback={<Loading />}>
         <UsuarioList />
       </Suspense>
     </>

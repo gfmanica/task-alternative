@@ -1,6 +1,7 @@
-import { Loader } from 'lucide-react';
+
 import { Suspense } from 'react';
 import { AtividadeForm } from '../../components/atividade-form';
+import { Loading } from '@/components/loading';
 
 export default function AtividadeFormPage({
   params,
@@ -15,7 +16,7 @@ export default function AtividadeFormPage({
         {id ? 'Editar' : 'Criar'} atividade
       </h1>
 
-      <Suspense fallback={<Loader size={16} className="mr-2 animate-spin" />}>
+      <Suspense fallback={<Loading />}>
         <AtividadeForm />
       </Suspense>
     </>
