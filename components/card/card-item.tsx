@@ -1,10 +1,4 @@
-export function AtividadeCardItem({
-  label,
-  value,
-}: {
-  label: string;
-  value: string;
-}) {
+export function CardItem({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex flex-col items-start">
       <p className="text-xs">{label}</p>
