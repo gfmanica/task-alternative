@@ -37,7 +37,7 @@ export function LoginForm() {
       </div>
 
       <Button disabled={isPending}>
-        {isPending && <Loader size={16} className="mr-2 animate-spin" />}
+        {isPending && <Loader size={18} className="mr-2 animate-spin" />}
         Entrar
       </Button>
     </form>

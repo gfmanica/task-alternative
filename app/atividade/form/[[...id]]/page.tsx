@@ -1,6 +1,6 @@
 import { Loader } from 'lucide-react';
 import { Suspense } from 'react';
-import { AtividadeForm } from './components';
+import { AtividadeForm } from '../../components/atividade-form';
 
 export default function AtividadeFormPage({
   params,
