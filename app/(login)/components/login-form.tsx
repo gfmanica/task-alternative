@@ -2,7 +2,7 @@
 
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { login } from '@/actions/actions';
+import { login } from '@/actions/login';
 import { Button } from '@/components/ui/button';
 import { useActionState } from 'react';
 import { Loader } from 'lucide-react';
@@ -13,13 +13,27 @@ export function LoginForm() {
   return (
     <form action={action} className="flex flex-col gap-4">
       <div className="flex flex-col gap-2">
-        <Label htmlFor="name">Nome de usuário</Label>
-        <Input id="name" />
+        <Label htmlFor="login">Nome de usuário</Label>
+
+        <Input name="login" />
+
+        {state?.errors?.login && (
+          <p className="text-xs text-red-500">{state.errors.login}</p>
+        )}
       </div>
 
       <div className="flex flex-col gap-2">
-        <Label htmlFor="framework">Senha</Label>
-        <Input id="name" type="password" />
+        <Label htmlFor="senha">Senha</Label>
+
+        <Input name="senha" type="password" />
+
+        {state?.errors?.senha && (
+          <p className="text-xs text-red-500">{state.errors.senha}</p>
+        )}
+
+        {state?.errors?.message && (
+          <p className="text-xs text-red-500">{state.errors.message}</p>
+        )}
       </div>
 
       <Button disabled={isPending}>
