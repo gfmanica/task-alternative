@@ -29,9 +29,11 @@ export async function mutateUsuario(
       },
     });
 
-    if (!response.ok) {
-      const data = await response.json();
+    const data = await response.json();
 
+    console.log(data);
+
+    if (!response.ok) {
       return {
         errors: {
           message: data.error,
@@ -46,5 +48,5 @@ export async function mutateUsuario(
     };
   }
 
-  redirect('/atividade');
+  redirect('/usuario');
 }

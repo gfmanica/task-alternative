@@ -1,6 +1,5 @@
 'use server';
 
-import { checkAuthenticity } from '@/utils/response';
 import { revalidatePath } from 'next/cache';
 import { cookies } from 'next/headers';
 

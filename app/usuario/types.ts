@@ -9,8 +9,8 @@ export type TUsuario = {
 };
 
 export const usuarioSchema = z.object({
+  _id: z.string().optional(),
   nome: z.string().min(1, { message: 'Nome é obrigatório' }),
   tipo: z.string().min(1, { message: 'Tipo é obrigatório' }),
   login: z.string().min(1, { message: 'Login é obrigatório' }),
-  senha: z.string().min(1, { message: 'Senha é obrigatória' }),
 });

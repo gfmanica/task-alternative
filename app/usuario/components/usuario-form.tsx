@@ -1,7 +1,7 @@
 'use client';
 
 import { Input } from '@/components/ui/input';
-import { useActionState } from 'react';
+import { useActionState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Loader, Save } from 'lucide-react';
 import { useForm } from 'react-hook-form';
@@ -16,9 +16,16 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { mutateUsuario } from '../actions/mutate-usuario';
+import { toast } from 'sonner';
 
 export function UsuarioForm({ usuario }: { usuario: TUsuario }) {
   const [state, action, isPending] = useActionState(mutateUsuario, null);
+
+  useEffect(() => {
+    if (state?.errors) {
+      toast.error(state?.errors?.message);
+    }
+  }, [state?.errors]);
 
   const form = useForm<TUsuario>({
     resolver: zodResolver(usuarioSchema),
@@ -53,7 +60,7 @@ export function UsuarioForm({ usuario }: { usuario: TUsuario }) {
             control={form.control}
             render={({ field }) => (
               <FormItem className="flex-1">
-                <FormLabel>Responsável</FormLabel>
+                <FormLabel>Login</FormLabel>
 
                 <FormControl>
                   <Input {...field} />
@@ -71,23 +78,7 @@ export function UsuarioForm({ usuario }: { usuario: TUsuario }) {
             control={form.control}
             render={({ field }) => (
               <FormItem className="flex-1">
-                <FormLabel>Nome</FormLabel>
-
-                <FormControl>
-                  <Input {...field} />
-                </FormControl>
-
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            name="senha"
-            control={form.control}
-            render={({ field }) => (
-              <FormItem className="flex-1">
-                <FormLabel>Responsável</FormLabel>
+                <FormLabel>Tipo de usuário</FormLabel>
 
                 <FormControl>
                   <Input {...field} />

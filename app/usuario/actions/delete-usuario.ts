@@ -1,9 +1,7 @@
 'use server';
 
-import { checkAuthenticity } from '@/utils/response';
 import { revalidatePath } from 'next/cache';
 import { cookies } from 'next/headers';
-import { toast } from 'sonner';
 
 // Exclui o usuário com o id informado
 export async function deleteUsuario(prevValue: string, id: string) {
