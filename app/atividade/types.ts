@@ -5,7 +5,7 @@ export type TAtividade = {
   nome: string;
   status: string;
   responsavel: string;
-  artefatos: string[];
+  artefatos: string;
   dataCriacao: string;
 };
 
@@ -15,6 +15,6 @@ export const atividadeSchema = z.object({
   _id: z.string().optional(),
   nome: z.string().min(1, { message: 'Nome é obrigatório' }),
   responsavel: z.string().min(1, { message: 'Responsável é obrigatório' }),
-  // status: z.string().min(1, { message: 'Status é obrigatório' }),
-  // artefatos: z.array(z.string(), { message: 'Artefatos é obrigatório' }),
+  status: z.string().min(1, { message: 'Status é obrigatório' }),
+  artefatos: z.string().url({ message: 'Artefatos é obrigatório' }),
 });

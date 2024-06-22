@@ -25,6 +25,8 @@ export function AtividadeForm({ atividade }: { atividade: TAtividade }) {
     defaultValues: atividade,
   });
 
+  const { watch, setValue } = form;
+
   return (
     <Form {...form}>
       <form
@@ -54,6 +56,40 @@ export function AtividadeForm({ atividade }: { atividade: TAtividade }) {
             render={({ field }) => (
               <FormItem className="flex-1">
                 <FormLabel>Responsável</FormLabel>
+
+                <FormControl>
+                  <Input {...field} />
+                </FormControl>
+
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
+
+        <div className="flex gap-4">
+          <FormField
+            name="status"
+            control={form.control}
+            render={({ field }) => (
+              <FormItem className="flex-1">
+                <FormLabel>Status</FormLabel>
+
+                <FormControl>
+                  <Input {...field} />
+                </FormControl>
+
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            name="artefatos"
+            control={form.control}
+            render={({ field }) => (
+              <FormItem className="flex-1">
+                <FormLabel>Artefato</FormLabel>
 
                 <FormControl>
                   <Input {...field} />

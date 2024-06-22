@@ -1,9 +1,10 @@
 import { Suspense } from 'react';
 import { Plus } from 'lucide-react';
-import { AtividadeList } from './components';
+
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Loading } from '@/components/loading';
+import { AtividadeList } from './components/atividade-list';
 
 export default function AtividadePage() {
   return (

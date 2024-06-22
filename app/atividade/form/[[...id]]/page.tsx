@@ -13,6 +13,10 @@ export default function AtividadeFormPage({
   const id = params?.id?.at(0);
   const atividade: TAtividade = id ? use(queryAtividade(id)) : {};
 
+  if (atividade?.artefatos) {
+    atividade.artefatos = atividade.artefatos[0];
+  }
+
   return (
     <>
       <h1 className="text-2xl font-semibold">
