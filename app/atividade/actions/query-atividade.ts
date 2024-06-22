@@ -4,7 +4,7 @@ import { checkAuthenticity } from '@/utils/response';
 import { cookies } from 'next/headers';
 
 // Retorna uma atividade ou todas as atividades, de acordo com o id informado
-export async function queryAtividade(id?: number) {
+export async function queryAtividade(id?: string) {
   try {
     const response = await fetch(
       `http://localhost:3001/atividade${id ? `/${id}` : ''}`,

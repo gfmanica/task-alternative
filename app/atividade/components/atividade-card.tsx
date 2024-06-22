@@ -1,8 +1,11 @@
 import { Card, CardContent } from '@/components/ui/card';
 import { TAtividade } from '../types';
 import { Button } from '@/components/ui/button';
-import { Pencil, Trash } from 'lucide-react';
+import { Pencil } from 'lucide-react';
 import { CardItem } from '@/components/card/card-item';
+import { CardDeleteButton } from '@/components/card/card-delete-button';
+import { deleteAtividade } from '../actions/delete-atividade';
+import Link from 'next/link';
 
 export function AtividadeCard({ atividade }: { atividade: TAtividade }) {
   return (
@@ -20,17 +23,13 @@ export function AtividadeCard({ atividade }: { atividade: TAtividade }) {
         />
 
         <div className="ml-auto flex gap-1">
-          <Button variant="ghost" size="icon">
-            <Pencil size={18} />
-          </Button>
+          <Link href={`/atividade/form/${atividade._id}`}>
+            <Button variant="ghost" size="icon">
+              <Pencil size={18} />
+            </Button>
+          </Link>
 
-          <Button
-            variant="ghost"
-            size="icon"
-            className="text-red-500 hover:text-red-500"
-          >
-            <Trash size={18} />
-          </Button>
+          <CardDeleteButton id={atividade._id} deleteAction={deleteAtividade} />
         </div>
       </CardContent>
     </Card>

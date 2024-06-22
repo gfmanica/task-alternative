@@ -43,7 +43,6 @@ export async function login(
   try {
     const { login, senha } = validationResult.data;
 
-    console.log({ login, senha });
     const response = await fetch('http://localhost:3001/login', {
       method: 'POST',
       body: JSON.stringify({ login, senha }),
@@ -64,7 +63,6 @@ export async function login(
 
     cookies().set('token', data.token);
   } catch (e) {
-    console.log(e);
     return {
       errors: {
         message: 'Usuário ou senha inválidos',

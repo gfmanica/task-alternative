@@ -9,9 +9,11 @@ export type TAtividade = {
   dataCriacao: string;
 };
 
-export const AtividadeSchema = z.object({
+export type TAtividadeForm = z.infer<typeof atividadeSchema>;
+
+export const atividadeSchema = z.object({
   nome: z.string().min(1, { message: 'Nome é obrigatório' }),
+  responsavel: z.string().min(1, { message: 'Responsável é obrigatório' }),
   // status: z.string().min(1, { message: 'Status é obrigatório' }),
-  // responsavel: z.string().min(1, { message: 'Responsável é obrigatório' }),
   // artefatos: z.array(z.string(), { message: 'Artefatos é obrigatório' }),
 });

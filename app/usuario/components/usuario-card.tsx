@@ -1,8 +1,10 @@
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Pencil, Trash } from 'lucide-react';
+import { Pencil } from 'lucide-react';
 import { CardItem } from '@/components/card/card-item';
 import { TUsuario } from '../types';
+import { CardDeleteButton } from '@/components/card/card-delete-button';
+import { deleteUsuario } from '../actions/delete-usuario';
 
 export function UsuarioCard({ usuario }: { usuario: TUsuario }) {
   return (
@@ -19,13 +21,7 @@ export function UsuarioCard({ usuario }: { usuario: TUsuario }) {
             <Pencil size={18} />
           </Button>
 
-          <Button
-            variant="ghost"
-            size="icon"
-            className="text-red-500 hover:text-red-500"
-          >
-            <Trash size={18} />
-          </Button>
+          <CardDeleteButton id={usuario._id} deleteAction={deleteUsuario} />
         </div>
       </CardContent>
     </Card>

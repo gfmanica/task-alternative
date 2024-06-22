@@ -1,33 +1,78 @@
 'use client';
 
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { useActionState } from 'react';
+import { FormEvent, use, useActionState } from 'react';
 import { mutateAtividade } from '../actions/mutate-atividade';
 import { Button } from '@/components/ui/button';
 import { Loader, Save } from 'lucide-react';
-import { Error } from '@/components/form/error';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { TAtividade, TAtividadeForm, atividadeSchema } from '../types';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form';
 
-export function AtividadeForm() {
+export function AtividadeForm({ atividade }: { atividade: TAtividade }) {
   const [state, action, isPending] = useActionState(mutateAtividade, null);
 
+  const form = useForm<TAtividadeForm>({
+    resolver: zodResolver(atividadeSchema),
+    defaultValues: atividade,
+  });
+
   return (
-    <form action={action} className="flex flex-col gap-4">
-      <div className="flex flex-col gap-2">
-        <Label htmlFor="nome">Nome da atividade</Label>
+    <Form {...form}>
+      <form
+        onSubmit={form.handleSubmit(action)}
+        className="flex flex-col gap-4"
+      >
+        <div className="flex gap-4">
+          <FormField
+            name="nome"
+            control={form.control}
+            render={({ field }) => (
+              <FormItem className="flex-1">
+                <FormLabel>Nome da atividade</FormLabel>
 
-        <Input name="nome" disabled={isPending} />
+                <FormControl>
+                  <Input {...field} />
+                </FormControl>
 
-        <Error value={state?.errors?.nome} />
-      </div>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-      <div className="flex justify-end">
-        <Button size="sm" disabled={isPending}>
-          {isPending && <Loader size={18} className="mr-2 animate-spin" />}
-          {!isPending && <Save size={18} className="mr-2" />}
-          Salvar
-        </Button>
-      </div>
-    </form>
+          <FormField
+            name="responsavel"
+            control={form.control}
+            render={({ field }) => (
+              <FormItem className="flex-1">
+                <FormLabel>Responsável</FormLabel>
+
+                <FormControl>
+                  <Input {...field} />
+                </FormControl>
+
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
+
+        <div className="flex justify-end">
+          <Button size="sm" disabled={isPending}>
+            {isPending && <Loader size={18} className="mr-2 animate-spin" />}
+            {!isPending && <Save size={18} className="mr-2" />}
+            Salvar
+          </Button>
+        </div>
+      </form>
+    </Form>
   );
 }

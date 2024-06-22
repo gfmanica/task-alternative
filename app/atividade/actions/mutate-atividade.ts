@@ -2,41 +2,35 @@
 
 import { checkAuthenticity } from '@/utils/response';
 import { cookies } from 'next/headers';
-import { AtividadeSchema } from '../types';
+import { TAtividadeForm, atividadeSchema } from '../types';
 import { redirect } from 'next/navigation';
 
-const validateFormData = (formData: FormData) =>
-  AtividadeSchema.safeParse({ nome: formData.get('nome') });
+type TAtividadeReturn = {
+  errors: {
+    message?: string;
+    nome?: string[];
+    responsavel?: string[];
+  };
+};
 
 // Realiza o post de uma atividade
-export async function mutateAtividade(previousState: any, formData: FormData) {
-  const validatedFormData = validateFormData(formData);
-
-  if (!validatedFormData.success) {
-    return {
-      errors: validatedFormData.error.flatten().fieldErrors,
-    };
-  }
-
-  let data;
-
+export async function mutateAtividade(
+  previousState: any,
+  formData: TAtividadeForm,
+): Promise<TAtividadeReturn> {
   try {
-    const { nome } = validatedFormData.data;
-
     const response = await fetch('http://localhost:3001/atividade', {
       method: 'POST',
-      body: JSON.stringify({ nome }),
+      body: JSON.stringify(formData),
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${cookies().get('token')?.value}`,
       },
     });
 
-    checkAuthenticity(response);
-
-    data = await response.json();
-
     if (!response.ok) {
+      const data = await response.json();
+
       return {
         errors: {
           message: data.error,
