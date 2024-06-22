@@ -1,10 +1,9 @@
 'use server';
 
-import { checkAuthenticity } from '@/utils/response';
 import { cookies } from 'next/headers';
 
 // Retorna um usuário ou todos usuários, de acordo com o id informado
-export async function getUsuario(id?: number) {
+export async function queryUsuario(id?: string) {
   try {
     const response = await fetch(
       `http://localhost:3001/usuario${id ? `/${id}` : ''}`,
@@ -16,9 +15,9 @@ export async function getUsuario(id?: number) {
       },
     );
 
-    checkAuthenticity(response);
+    const data = await response.json();
 
-    return await response.json();
+    return data;
   } catch {
     return [];
   }

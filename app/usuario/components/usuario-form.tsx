@@ -2,12 +2,11 @@
 
 import { Input } from '@/components/ui/input';
 import { useActionState } from 'react';
-import { mutateAtividade } from '../actions/mutate-atividade';
 import { Button } from '@/components/ui/button';
 import { Loader, Save } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { TAtividade, TAtividadeForm, atividadeSchema } from '../types';
+import { TUsuario, usuarioSchema } from '../types';
 import {
   Form,
   FormControl,
@@ -16,13 +15,14 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
+import { mutateUsuario } from '../actions/mutate-usuario';
 
-export function AtividadeForm({ atividade }: { atividade: TAtividade }) {
-  const [state, action, isPending] = useActionState(mutateAtividade, null);
+export function UsuarioForm({ usuario }: { usuario: TUsuario }) {
+  const [state, action, isPending] = useActionState(mutateUsuario, null);
 
-  const form = useForm<TAtividadeForm>({
-    resolver: zodResolver(atividadeSchema),
-    defaultValues: atividade,
+  const form = useForm<TUsuario>({
+    resolver: zodResolver(usuarioSchema),
+    defaultValues: usuario,
   });
 
   return (
@@ -37,7 +37,7 @@ export function AtividadeForm({ atividade }: { atividade: TAtividade }) {
             control={form.control}
             render={({ field }) => (
               <FormItem className="flex-1">
-                <FormLabel>Nome da atividade</FormLabel>
+                <FormLabel>Nome</FormLabel>
 
                 <FormControl>
                   <Input {...field} />
@@ -49,7 +49,41 @@ export function AtividadeForm({ atividade }: { atividade: TAtividade }) {
           />
 
           <FormField
-            name="responsavel"
+            name="login"
+            control={form.control}
+            render={({ field }) => (
+              <FormItem className="flex-1">
+                <FormLabel>Responsável</FormLabel>
+
+                <FormControl>
+                  <Input {...field} />
+                </FormControl>
+
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
+
+        <div className="flex gap-4">
+          <FormField
+            name="tipo"
+            control={form.control}
+            render={({ field }) => (
+              <FormItem className="flex-1">
+                <FormLabel>Nome</FormLabel>
+
+                <FormControl>
+                  <Input {...field} />
+                </FormControl>
+
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            name="senha"
             control={form.control}
             render={({ field }) => (
               <FormItem className="flex-1">

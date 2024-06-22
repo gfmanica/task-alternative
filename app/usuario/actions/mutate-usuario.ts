@@ -1,8 +1,8 @@
 'use server';
 
 import { cookies } from 'next/headers';
-import { TAtividadeForm } from '../types';
 import { redirect } from 'next/navigation';
+import { TUsuario } from '../types';
 
 type TAtividadeReturn = {
   errors: {
@@ -13,11 +13,11 @@ type TAtividadeReturn = {
 };
 
 // Realiza o post de uma atividade
-export async function mutateAtividade(
+export async function mutateUsuario(
   previousState: any,
-  formData: TAtividadeForm,
+  formData: TUsuario,
 ): Promise<TAtividadeReturn> {
-  const url = `http://localhost:3001/atividade${formData._id ? `/${formData._id}` : ''}`;
+  const url = `http://localhost:3001/usuario${formData._id ? `/${formData._id}` : ''}`;
 
   try {
     const response = await fetch(url, {
