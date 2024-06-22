@@ -10,9 +10,9 @@ import { logOut } from '@/actions/log-out';
 export function Header() {
   const pathname = usePathname();
   const [state, action, isPending] = useActionState(logOut, null);
-  const showHeader = pathname !== '/';
+  const hideHeader = ['/', '/cadastro-usuario'].includes(pathname);
 
-  if (!showHeader) return null;
+  if (hideHeader) return null;
 
   return (
     <header className="sticky top-0 flex items-center justify-center gap-8 border-b-[1px] border-gray-200 bg-white p-4 backdrop-blur-sm">

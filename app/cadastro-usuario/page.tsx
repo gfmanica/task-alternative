@@ -7,20 +7,22 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { LoginForm } from './components';
+import { CadastroUsuarioForm } from './components/cadastro-usuario-form';
 
-export default function LoginPage() {
+export default function CadastroUsuarioPage() {
   return (
     <div className="item flex flex-1 flex-col items-center justify-center">
       <Card className="w-[350px]">
         <CardHeader className="pb-4">
-          <CardTitle>Login</CardTitle>
+          <CardTitle>Cadastro de usuário</CardTitle>
 
-          <CardDescription>Faça login para entrar no site!</CardDescription>
+          <CardDescription>
+            Cadastre-se para ter acesso ao sistema.
+          </CardDescription>
         </CardHeader>
 
         <CardContent>
-          <LoginForm />
+          <CadastroUsuarioForm />
         </CardContent>
       </Card>
     </div>
