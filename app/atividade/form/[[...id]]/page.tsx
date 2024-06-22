@@ -1,8 +1,6 @@
-import { Suspense, use } from 'react';
+import { use } from 'react';
 import { AtividadeForm } from '../../components/atividade-form';
-import { Loading } from '@/components/loading';
 import { queryAtividade } from '../../actions/query-atividade';
-import { TUsuario } from '@/app/usuario/types';
 import { TAtividade } from '../../types';
 
 export default function AtividadeFormPage({

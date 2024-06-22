@@ -5,21 +5,17 @@ import { cookies } from 'next/headers';
 
 // Retorna uma atividade ou todas as atividades, de acordo com o id informado
 export async function queryAtividade(id?: string) {
-  try {
-    const response = await fetch(
-      `http://localhost:3001/atividade${id ? `/${id}` : ''}`,
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${cookies().get('token')?.value}`,
-        },
+  const response = await fetch(
+    `http://localhost:3001/atividade${id ? `/${id}` : ''}`,
+    {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${cookies().get('token')?.value}`,
       },
-    );
+    },
+  );
 
-    checkAuthenticity(response);
+  checkAuthenticity(response);
 
-    return await response.json();
-  } catch {
-    return [];
-  }
+  return await response.json();
 }

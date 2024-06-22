@@ -13,7 +13,7 @@ export function UsuarioCard({ usuario }: { usuario: TUsuario }) {
       <CardContent className="flex items-center gap-8 p-3">
         <CardItem label="Nome" value={usuario.nome} />
 
-        <CardItem label="Responsável" value={usuario.login} />
+        <CardItem label="Login" value={usuario.login} />
 
         <CardItem label="Status" value={usuario.tipo} />
 
