@@ -16,6 +16,7 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
+import { Error } from '@/components/form/error';
 
 export function AtividadeForm({ atividade }: { atividade: TAtividade }) {
   const [state, action, isPending] = useActionState(mutateAtividade, null);
@@ -24,8 +25,6 @@ export function AtividadeForm({ atividade }: { atividade: TAtividade }) {
     resolver: zodResolver(atividadeSchema),
     defaultValues: atividade,
   });
-
-  const { watch, setValue } = form;
 
   return (
     <Form {...form}>
@@ -45,7 +44,7 @@ export function AtividadeForm({ atividade }: { atividade: TAtividade }) {
                   <Input {...field} />
                 </FormControl>
 
-                <FormMessage />
+                <Error value={form.formState.errors?.nome?.message} />
               </FormItem>
             )}
           />
@@ -61,7 +60,7 @@ export function AtividadeForm({ atividade }: { atividade: TAtividade }) {
                   <Input {...field} />
                 </FormControl>
 
-                <FormMessage />
+                <Error value={form.formState.errors?.responsavel?.message} />
               </FormItem>
             )}
           />
@@ -79,7 +78,7 @@ export function AtividadeForm({ atividade }: { atividade: TAtividade }) {
                   <Input {...field} />
                 </FormControl>
 
-                <FormMessage />
+                <Error value={form.formState.errors?.status?.message} />
               </FormItem>
             )}
           />
@@ -95,7 +94,7 @@ export function AtividadeForm({ atividade }: { atividade: TAtividade }) {
                   <Input {...field} />
                 </FormControl>
 
-                <FormMessage />
+                <Error value={form.formState.errors?.artefatos?.message} />
               </FormItem>
             )}
           />

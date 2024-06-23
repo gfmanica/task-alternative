@@ -15,7 +15,7 @@ export function Header() {
   if (hideHeader) return null;
 
   return (
-    <header className="flex items-center justify-center gap-8 border-b-[1px] border-gray-200 bg-black p-4 backdrop-blur-sm">
+    <header className="sticky top-0 flex items-center justify-center gap-8 border-b-[1px] border-gray-200 bg-white p-4 backdrop-blur-sm">
       <Link href="/atividade">
         <Button variant="link" className="text-lg font-semibold">
           Atividades

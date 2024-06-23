@@ -17,6 +17,7 @@ import {
 } from '@/components/ui/form';
 import { mutateUsuario } from '../actions/mutate-usuario';
 import { toast } from 'sonner';
+import { Error } from '@/components/form/error';
 
 export function UsuarioForm({ usuario }: { usuario: TUsuario }) {
   const [state, action, isPending] = useActionState(mutateUsuario, null);
@@ -50,7 +51,7 @@ export function UsuarioForm({ usuario }: { usuario: TUsuario }) {
                   <Input {...field} />
                 </FormControl>
 
-                <FormMessage />
+                <Error value={form.formState.errors?.nome?.message} />
               </FormItem>
             )}
           />
@@ -66,7 +67,7 @@ export function UsuarioForm({ usuario }: { usuario: TUsuario }) {
                   <Input {...field} />
                 </FormControl>
 
-                <FormMessage />
+                <Error value={form.formState.errors?.login?.message} />
               </FormItem>
             )}
           />
@@ -84,7 +85,7 @@ export function UsuarioForm({ usuario }: { usuario: TUsuario }) {
                   <Input {...field} />
                 </FormControl>
 
-                <FormMessage />
+                <Error value={form.formState.errors?.tipo?.message} />
               </FormItem>
             )}
           />

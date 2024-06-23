@@ -16,5 +16,5 @@ export const atividadeSchema = z.object({
   nome: z.string().min(1, { message: 'Nome é obrigatório' }),
   responsavel: z.string().min(1, { message: 'Responsável é obrigatório' }),
   status: z.string().min(1, { message: 'Status é obrigatório' }),
-  artefatos: z.string().url({ message: 'Artefatos é obrigatório' }),
+  artefatos: z.string().min(1, { message: 'Artefatos é obrigatório' }),
 });
