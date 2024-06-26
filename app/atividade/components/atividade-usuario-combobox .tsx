@@ -63,6 +63,7 @@ export function AtividadeUsuarioCombobox({
             <CommandGroup>
               {usuarios?.map((usuario) => (
                 <CommandItem
+                  className="px-4 py-1"
                   key={usuario.nome}
                   value={usuario.nome}
                   onSelect={(currentValue) => {
@@ -72,7 +73,6 @@ export function AtividadeUsuarioCombobox({
                     setOpen(false);
                   }}
                 >
-                  <Check className="opacity-100" />
                   {usuario.nome}
                 </CommandItem>
               ))}

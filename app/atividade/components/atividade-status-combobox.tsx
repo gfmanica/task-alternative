@@ -62,6 +62,7 @@ export function AtividadeStatusCombobox({
             <CommandGroup>
               {status?.map((status) => (
                 <CommandItem
+                  className="px-4 py-1"
                   key={status.value}
                   value={status.value}
                   onSelect={(currentValue) => {
@@ -71,7 +72,6 @@ export function AtividadeStatusCombobox({
                     setOpen(false);
                   }}
                 >
-                  <Check className="opacity-100" />
                   {status.value}
                 </CommandItem>
               ))}
