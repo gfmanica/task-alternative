@@ -17,6 +17,8 @@ export function AtividadeCard({ atividade }: { atividade: TAtividade }) {
 
         <CardItem label="Status" value={atividade.status} />
 
+        <CardItem label="Artefato" value={atividade.artefatos} />
+
         <CardItem
           label="Data de criação"
           value={new Date(atividade.dataCriacao).toLocaleString()}
