@@ -17,6 +17,9 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Error } from '@/components/form/error';
+import { Label } from '@/components/ui/label';
+import { AtividadeStatusCombobox } from './atividade-status-combobox';
+import { AtividadeUsuarioCombobox } from './atividade-usuario-combobox ';
 
 export function AtividadeForm({ atividade }: { atividade: TAtividade }) {
   const [state, action, isPending] = useActionState(mutateAtividade, null);
@@ -50,40 +53,6 @@ export function AtividadeForm({ atividade }: { atividade: TAtividade }) {
           />
 
           <FormField
-            name="responsavel"
-            control={form.control}
-            render={({ field }) => (
-              <FormItem className="flex-1">
-                <FormLabel>Responsável</FormLabel>
-
-                <FormControl>
-                  <Input {...field} />
-                </FormControl>
-
-                <Error value={form.formState.errors?.responsavel?.message} />
-              </FormItem>
-            )}
-          />
-        </div>
-
-        <div className="flex gap-4">
-          <FormField
-            name="status"
-            control={form.control}
-            render={({ field }) => (
-              <FormItem className="flex-1">
-                <FormLabel>Status</FormLabel>
-
-                <FormControl>
-                  <Input {...field} />
-                </FormControl>
-
-                <Error value={form.formState.errors?.status?.message} />
-              </FormItem>
-            )}
-          />
-
-          <FormField
             name="artefatos"
             control={form.control}
             render={({ field }) => (
@@ -98,6 +67,30 @@ export function AtividadeForm({ atividade }: { atividade: TAtividade }) {
               </FormItem>
             )}
           />
+        </div>
+
+        <div className="flex gap-4">
+          <div className="mt-3 flex flex-1 flex-col gap-1">
+            <Label>Responsável</Label>
+
+            <AtividadeUsuarioCombobox
+              setValue={form.setValue}
+              value={form.watch('responsavel')}
+            />
+
+            <Error value={form.formState.errors?.status?.message} />
+          </div>
+
+          <div className="mt-3 flex flex-1 flex-col gap-1">
+            <Label>Status</Label>
+
+            <AtividadeStatusCombobox
+              setValue={form.setValue}
+              value={form.watch('status')}
+            />
+
+            <Error value={form.formState.errors?.status?.message} />
+          </div>
         </div>
 
         <div className="flex justify-end">

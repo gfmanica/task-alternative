@@ -18,74 +18,62 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
+import { queryUsuario } from '@/app/usuario/actions/query-usuario';
+import { TUsuario } from '@/app/usuario/types';
 
-const frameworks = [
-  {
-    value: 'next.js',
-    label: 'Next.js',
-  },
-  {
-    value: 'sveltekit',
-    label: 'SvelteKit',
-  },
-  {
-    value: 'nuxt.js',
-    label: 'Nuxt.js',
-  },
-  {
-    value: 'remix',
-    label: 'Remix',
-  },
-  {
-    value: 'astro',
-    label: 'Astro',
-  },
-];
-
-export function Combobox() {
+export function AtividadeUsuarioCombobox({
+  setValue,
+  value,
+}: {
+  setValue: any;
+  value: string;
+}) {
   const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState('');
+  const [selectedValue, setSelectedValue] = React.useState<string>(value);
+  const [usuarios, setUsuarios] = React.useState<TUsuario[]>([]);
+
+  React.useEffect(() => {
+    const fetchUsuarios = async () => {
+      const usuarios: TUsuario[] = await queryUsuario();
+
+      setUsuarios(usuarios);
+    };
+
+    fetchUsuarios();
+  }, []);
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
         <Button
           variant="outline"
-          role="combobox"
           aria-expanded={open}
           className="w-[200px] justify-between"
         >
-          {value
-            ? frameworks?.find((framework) => framework.value === value)?.label
-            : 'Select framework...'}
+          {selectedValue || 'Selecione um responsável'}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
-      
-      <PopoverContent className="w-[200px] p-0">
-        <Command>
-          <CommandInput placeholder="Search framework..." />
 
+      <PopoverContent className="max-h-[--radix-popover-content-available-height] w-[--radix-popover-trigger-width] p-0">
+        <Command>
           <CommandList>
             <CommandEmpty>Sem registros</CommandEmpty>
 
             <CommandGroup>
-              {frameworks?.map((framework) => (
+              {usuarios?.map((usuario) => (
                 <CommandItem
-                  key={framework.value}
-                  value={framework.value}
+                  key={usuario.nome}
+                  value={usuario.nome}
                   onSelect={(currentValue) => {
-                    setValue(currentValue === value ? '' : currentValue);
+                    setValue('responsavel', currentValue);
+                    setSelectedValue(currentValue);
+
                     setOpen(false);
                   }}
                 >
-                  <Check
-                    className={cn(
-                      'mr-2 h-4 w-4',
-                      value === framework.value ? 'opacity-100' : 'opacity-0',
-                    )}
-                  />
-                  {framework.label}
+                  <Check className="opacity-100" />
+                  {usuario.nome}
                 </CommandItem>
               ))}
             </CommandGroup>

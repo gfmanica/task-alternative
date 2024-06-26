@@ -5,7 +5,6 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Loading } from '@/components/loading';
 import { AtividadeList } from './components/atividade-list';
-import { Combobox } from '@/components/ui/combobox';
 
 export default function AtividadePage() {
   return (
@@ -18,8 +17,6 @@ export default function AtividadePage() {
             <Plus size={18} className="mr-2" /> Novo
           </Button>
         </Link>
-
-        <Combobox />
       </div>
 
       <Suspense fallback={<Loading />}>
