@@ -18,6 +18,8 @@ import {
 import { mutateUsuario } from '../actions/mutate-usuario';
 import { toast } from 'sonner';
 import { Error } from '@/components/form/error';
+import { Label } from '@/components/ui/label';
+import { UsuarioTipoCombobox } from './usuario-tipo-combobox';
 
 export function UsuarioForm({ usuario }: { usuario: TUsuario }) {
   const [state, action, isPending] = useActionState(mutateUsuario, null);
@@ -74,18 +76,29 @@ export function UsuarioForm({ usuario }: { usuario: TUsuario }) {
         </div>
 
         <div className="flex gap-4">
+          <div className="mt-3 flex flex-1 flex-col gap-1">
+            <Label>Tipo do usuário</Label>
+
+            <UsuarioTipoCombobox
+              setValue={form.setValue}
+              value={form.watch('tipo')}
+            />
+
+            <Error value={form.formState.errors?.tipo?.message} />
+          </div>
+
           <FormField
-            name="tipo"
+            name="senha"
             control={form.control}
             render={({ field }) => (
               <FormItem className="flex-1">
-                <FormLabel>Tipo de usuário</FormLabel>
+                <FormLabel>Senha</FormLabel>
 
                 <FormControl>
                   <Input {...field} />
                 </FormControl>
 
-                <Error value={form.formState.errors?.tipo?.message} />
+                <Error value={form.formState.errors?.senha?.message} />
               </FormItem>
             )}
           />
